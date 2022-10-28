@@ -45,27 +45,7 @@ public class DBConnect implements DB{
 		preparedStatement.setFloat(4,em.salary);
 		preparedStatement.setInt(5,em.a_id);
 		
-//		preparedStatement.setInt(1,Integer.parseInt(strAr[0]));
-//		preparedStatement.setString(2,strAr[1]);
-//		preparedStatement.setString(3,strAr[2]);
-//		preparedStatement.setFloat(4,Float.parseFloat(strAr[3]));
-//		preparedStatement.setInt(5,Integer.parseInt(strAr[4]));
-//		
-//      System.out.println("enter emp id");
-//		preparedStatement.setInt(1,Integer.parseInt(sc.nextLine()));
-//		
-//		System.out.println("enter emp first name");
-//		preparedStatement.setString(2,sc.nextLine());
-//		
-//		System.out.println("enter emp last name");
-//		preparedStatement.setString(3,sc.nextLine());
-//		
-//		System.out.println("enter emp salary");
-//		preparedStatement.setFloat(4,Float.parseFloat(sc.nextLine()));
-//		
-//		System.out.println("enter emp address id");
-//		preparedStatement.setInt(5,Integer.parseInt(sc.nextLine()));
-//		
+
 		int rows=preparedStatement.executeUpdate();
 		if(rows>0) {
 			System.out.println("Record inserted sucessfully!!");
@@ -86,15 +66,6 @@ public class DBConnect implements DB{
 				
 			Statement statement=connection.createStatement();
 			ResultSet r=statement.executeQuery(s);
-//            ResultSetMetaData rsmd=r.getMetaData();
-//            int n=rsmd.getColumnCount();
-//            
-//            for(int i=1;i<=n;i++) {
-//            	if(i>1)System.out.print(" ");
-//            	String colName=rsmd.getColumnName(i);
-//            	System.out.print(rsmd.getColumnName(i));
-//            }
-//            System.out.println("");
 			while(r.next()) {
 			System.out.print(r.getString(1)+" ");
 			System.out.print(r.getString(2)+" ");
@@ -115,8 +86,6 @@ public class DBConnect implements DB{
 		try {
 			PreparedStatement preparedStatement;
 			  int r3;
-			  System.out.println("enter the id");
-//			   int id1=Integer.parseInt(sc.nextLine());
 			   
 			   String s="select * from employee where emp_id= "+id;
 				Statement statement=connection.createStatement();
@@ -130,20 +99,13 @@ public class DBConnect implements DB{
 				System.out.println(r.getString(5)+" ");
 				
 				String str="update employee set ";
-//				System.out.println("select what you want to update");
-//				System.out.println("1.first name to be updated");
-//				System.out.println("2.last name to be updated");
-//				System.out.println("3. salary to be updated");
-//				System.out.println("4.address to be updated");
-//				int ch=Integer.parseInt(sc.nextLine());
+
 				switch(ch) {
 				case 1:
 					
 					str=str+"first_name =? where emp_id = "+id;
 					preparedStatement=connection.prepareStatement(str);
 					preparedStatement.setString(1,st);
-//					System.out.println("enter first name");
-//					preparedStatement.setString(1, sc.nextLine());
 					r3=preparedStatement.executeUpdate();
 				    if(r3>0) {
 				    	System.out.println("first name updated successfully!!");
@@ -156,8 +118,6 @@ public class DBConnect implements DB{
 					str=str+"last_name =? where emp_id = "+id;
 					preparedStatement=connection.prepareStatement(str);
 					preparedStatement.setString(1,st);
-//					System.out.println("enter last name");
-//					preparedStatement.setString(1, sc.nextLine());
 					r3=preparedStatement.executeUpdate();
 				    if(r3>0) {
 				    	System.out.println("last name updated successfully!!");
@@ -170,22 +130,18 @@ public class DBConnect implements DB{
 					str=str+"salary =? where emp_id = "+id;
 					preparedStatement=connection.prepareStatement(str);
 					preparedStatement.setFloat(1, Float.parseFloat(st));
-//					System.out.println("enter salary");
-//					preparedStatement.setFloat(1, Float.parseFloat(sc.nextLine()));
 					r3=preparedStatement.executeUpdate();
 				    if(r3>0) {
 				    	System.out.println("salary updated successfully!!");
 				    }
 				    else {
-				    	System.out.println("something wrong!!");
+				    	System.out.println("something went wrong!!");
 				    }
 				    break;
 				case 4:
 					str=str+"address_id =? where emp_id = "+id;
 					preparedStatement=connection.prepareStatement(str);
 					preparedStatement.setFloat(1, Integer.parseInt(st));
-//					System.out.println("enter address id");
-//					preparedStatement.setFloat(1, Integer.parseInt(sc.nextLine()));
 					r3=preparedStatement.executeUpdate();
 				    if(r3>0) {
 				    	System.out.println("address updated successfully!!");
@@ -212,8 +168,6 @@ public class DBConnect implements DB{
 	
 	public void deleteEmpRecord(int id) {
 		try {
-			System.out.println("enter emp id to delete");
-//			int id=Integer.parseInt(sc.nextLine());
 			String sql="delete from employee where emp_id= "+id;
 			PreparedStatement preparedstatement=connection.prepareStatement(sql);
 		    int r=preparedstatement.executeUpdate();
